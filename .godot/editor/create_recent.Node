@@ -1,2 +1,9 @@
+Button
+Label
+TextEdit
+VBoxContainer
+MarginContainer
+HBoxContainer
+Control
 TileMap
 Node2D

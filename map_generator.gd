@@ -4,9 +4,16 @@ enum TerrainType { PLAIN, FOREST, WATER, MOUNTAIN }
 var map_size = Vector2(400, 400) # Adjust map size as needed
 var terrain_grid = []
 var noise = FastNoiseLite.new()
+var seedvalue = randi()
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:
+			var menu_scene = load("res://menu.tscn").instantiate();
+			get_tree().get_root().add_child(menu_scene)
 
 func _ready():
-	noise.seed = randi() # Random seed for each run, or use a specific number for consistency
+	noise.seed = seedvalue
 	noise.noise_type = 3 #perlin
 	noise.fractal_type =1
 	noise.fractal_octaves =5
