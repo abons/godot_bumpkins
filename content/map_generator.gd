@@ -9,7 +9,7 @@ var seedvalue = randi()
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
-			var menu_scene = load("res://menu.tscn").instantiate();
+			var menu_scene = load("res://content/menu.tscn").instantiate();
 			get_tree().get_root().add_child(menu_scene)
 
 func _ready():
