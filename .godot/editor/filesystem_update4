@@ -1,1 +1,7 @@
 res://content/menu.tscn
+res://content/map_generator.gd
+res://content/TerrainData.gd
+res://content/map.tscn
+res://content/menu.gd
+res://content/Build.gd
+res://content/build.tscn
