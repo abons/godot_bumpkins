@@ -46,7 +46,7 @@ func determine_terrain(value):
 	elif value < 0.20:
 		return TerrainType.PLAIN
 	else:
-		return TerrainType.MOUNTAIN
+		return TerrainType.PLAIN#MOUNTAIN
 
 @onready var tile_map = $TileMap
 
@@ -62,12 +62,13 @@ func _draw():
 			var pos = Vector2(x * cell_size.x, y * cell_size.y)
 			if terrain_type == TerrainType.WATER:
 				#draw_rect(Rect2(pos, cell_size), Color(0.0, 0.0, 0.5), true)
-				tile_map.set_cell(0, Vector2(x, y), 16, Vector2i(0,5))
+				#tile_map.set_cell(0, Vector2(x, y), 16, Vector2i(0,5))
+				tile_map.set_cell(0, Vector2(x, y), 0, Vector2i(x%15,y%15))
 			elif terrain_type == TerrainType.SAND:
 				draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
 			elif terrain_type == TerrainType.PLAIN:
 				#draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
-				tile_map.set_cell(0, Vector2(x, y), 13, Vector2i(8,5))
+				tile_map.set_cell(0, Vector2(x, y), 1, Vector2i(x%15,y%15))
 			elif terrain_type == TerrainType.FOREST:
 				draw_rect(Rect2(pos, cell_size), Color(0.4, 0.9, 0.4), true)
 				#tile_map.set_cell(0, Vector2(x, y), 12, Vector2i(5,3))
@@ -76,4 +77,4 @@ func _draw():
 				draw_rect(Rect2(pos, cell_size), Color(0.5, 0.5, 0.5), true)
 		TerrainData.terrain_values.append(column)
 		#TerrainData.terrain_values[x][y]
-		print(column)
+		#print(column)
