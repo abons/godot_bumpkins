@@ -4,16 +4,14 @@ enum TerrainType { WATER,SAND,PLAIN,FOREST,MOUNTAIN }
 var map_size = Vector2(28, 20) # Adjust map size as needed
 var noise = FastNoiseLite.new()
 var seedvalue = randi()
+var Build_scene = null
 
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == KEY_ESCAPE:
-				var menu_scene = load("res://content/menu.tscn").instantiate();
+				var menu_scene = load("res://scenes/Menu.tscn").instantiate();
 				get_tree().get_root().add_child(menu_scene)
-			if event.keycode == KEY_B:
-				var Build_scene = load("res://content/Build.tscn").instantiate();
-				get_tree().get_root().add_child(Build_scene)
 			if event.keycode == KEY_Q:
 				get_tree().quit()
 			if event.keycode == KEY_R:
@@ -22,6 +20,16 @@ func _input(event):
 
 func _ready():
 	init()
+	call_deferred("_build")
+	
+func _build():
+	print(get_tree().get_root().get_children())
+	Build_scene = load("res://scenes/Build.tscn").instantiate();
+	get_tree().get_root().add_child(Build_scene)
+
+func _exit_tree():
+	if Build_scene != null:
+		get_tree().get_root().remove_child(Build_scene)
 	
 func init():
 	noise.seed = seedvalue
@@ -37,12 +45,12 @@ func init():
 func determine_terrain(value):
 	if value < -0.2:
 		return TerrainType.WATER
-	elif value < -0.15:
-		return TerrainType.SAND
+	#elif value < -0.15:
+	#	return TerrainType.SAND
 	elif value < 0.1:
 		return TerrainType.PLAIN
-	elif value < 0.15:
-		return TerrainType.FOREST
+	#elif value < 0.15:
+	#	return TerrainType.FOREST
 	elif value < 0.20:
 		return TerrainType.PLAIN
 	else:
@@ -63,7 +71,7 @@ func _draw():
 			if terrain_type == TerrainType.WATER:
 				#draw_rect(Rect2(pos, cell_size), Color(0.0, 0.0, 0.5), true)
 				#tile_map.set_cell(0, Vector2(x, y), 16, Vector2i(0,5))
-				tile_map.set_cell(0, Vector2(x, y), 0, Vector2i(x%15,y%15))
+				tile_map.set_cell(0, Vector2(x, y), 3, Vector2i(x%15,y%15))
 			elif terrain_type == TerrainType.SAND:
 				draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
 			elif terrain_type == TerrainType.PLAIN:

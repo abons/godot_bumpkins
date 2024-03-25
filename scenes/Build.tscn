@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcblcdraog7qk"]
+
+[ext_resource type="Script" path="res://content/Build.gd" id="1_bq64i"]
+[ext_resource type="Texture2D" uid="uid://dfbvhrynwsg2f" path="res://assets/11954560-beasts-bumpkins-windows-some-peasants-tend-to-the-fields-while-o.png" id="2_xyhyv"]
+[ext_resource type="Texture2D" uid="uid://ch714beo6spvh" path="res://assets/house_btn.webp" id="3_cvna3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_solse"]
+atlas = ExtResource("2_xyhyv")
+region = Rect2(86, 181, 192, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw2sl"]
+atlas = ExtResource("2_xyhyv")
+region = Rect2(493, 54, 64, 43)
+
+[node name="Build" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bq64i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Mill" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_solse")
+stretch_mode = 4
+
+[node name="Chicken" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_pw2sl")
+
+[node name="House" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("3_cvna3")
+stretch_mode = 4
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/House" to="." method="_on_house_pressed"]

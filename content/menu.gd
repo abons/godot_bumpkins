@@ -15,8 +15,9 @@ func _on_button_pressed():
 	var map_scene = get_tree().get_root().find_child("Map",true,false)
 	if map_scene:
 		get_tree().get_root().remove_child(map_scene)
+		map_scene.queue_free()
 	# We instantiate the scene before we add it 
-	map_scene = load("res://content/map.tscn").instantiate();
+	map_scene = load("res://scenes/Map.tscn").instantiate();
 	# parameterize the scene
 	var seedvalue = $MarginContainer/VBoxContainer/TextEdit
 	map_scene.seedvalue = int(seedvalue.get_text())

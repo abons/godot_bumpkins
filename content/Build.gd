@@ -1,23 +1,14 @@
-extends Node2D
+extends Control
 
-var radius = 100  # Radius of the circular menu
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	# Get the screen center
-	var screen_center = get_viewport_rect().size * 0.5
-	# Find all TextureButtons added to the group "circular_menu"
-	var buttons = get_children()
-	var num_buttons = buttons.size()
-	
-	var angle_step = 2 * PI / num_buttons  # Calculate the angle between each button
-	
-	for i in range(num_buttons):
-		var angle = i * angle_step
-		var x = cos(angle) * radius
-		var y = sin(angle) * radius
-		
-		# Calculate the position for each button
-		var position = screen_center + Vector2(x, y)
-		
-		# Set the position of each button
-		buttons[i].position = position
+	pass # Replace with function body.
+
+# Het pad naar de scene van het huis
+var house_scene_path = "res://scenes/BuildHouse.tscn"
+func _on_house_pressed():
+	# Laad de huis scene
+	var house_scene = load(house_scene_path).instantiate()
+	# Voeg het huis toe aan de hoofdscene of een specifieke node binnen die scene
+	get_tree().get_root().add_child(house_scene)

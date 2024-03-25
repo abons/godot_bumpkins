@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmxq0vihwod1a"]
+
+[ext_resource type="Script" path="res://content/Unit.gd" id="1_okr5r"]
+
+[sub_resource type="Gradient" id="Gradient_qngt0"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q0acd"]
+gradient = SubResource("Gradient_qngt0")
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = SubResource("GradientTexture2D_q0acd")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Unit" type="CharacterBody2D" parent="NavigationAgent2D"]
+position = Vector2(640, 238)
+script = ExtResource("1_okr5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Unit"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ah0sbu6uy1f"]
+
+[ext_resource type="Texture2D" uid="uid://oumdd3q8flj1" path="res://assets/file-r308JQph9zQijnS7vZLudHSq.webp" id="1_ru1u4"]
+[ext_resource type="Script" path="res://content/BuildHouse.gd" id="2_72tbk"]
+
+[node name="BuildHouse" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ru1u4")
+script = ExtResource("2_72tbk")
