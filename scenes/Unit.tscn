@@ -1,19 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmxq0vihwod1a"]
+[gd_scene load_steps=5 format=3 uid="uid://dmxq0vihwod1a"]
 
 [ext_resource type="Script" path="res://content/Unit.gd" id="1_okr5r"]
+[ext_resource type="Shader" path="res://scenes/Unit.gdshader" id="2_11eto"]
+[ext_resource type="Texture2D" uid="uid://mc6xk2cq5xwp" path="res://icon.svg" id="2_qvbaw"]
 
-[sub_resource type="Gradient" id="Gradient_qngt0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0h8y0"]
+shader = ExtResource("2_11eto")
+shader_parameter/active = true
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_q0acd"]
-gradient = SubResource("Gradient_qngt0")
-
-[node name="Sprite2D" type="Sprite2D"]
-texture = SubResource("GradientTexture2D_q0acd")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-
-[node name="Unit" type="CharacterBody2D" parent="NavigationAgent2D"]
+[node name="Unit" type="CharacterBody2D"]
 position = Vector2(640, 238)
 script = ExtResource("1_okr5r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationAgent2D/Unit"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0h8y0")
+texture = ExtResource("2_qvbaw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

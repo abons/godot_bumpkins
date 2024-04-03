@@ -1,7 +1,7 @@
 extends Node2D
 
 enum TerrainType { WATER,SAND,PLAIN,FOREST,MOUNTAIN }
-var map_size = Vector2(28, 20) # Adjust map size as needed
+var map_size = Vector2(150, 100) # Adjust map size as needed
 var noise = FastNoiseLite.new()
 var seedvalue = randi()
 var Build_scene = null
@@ -26,6 +26,8 @@ func _build():
 	print(get_tree().get_root().get_children())
 	Build_scene = load("res://scenes/Build.tscn").instantiate();
 	get_tree().get_root().add_child(Build_scene)
+	var Unit_scene = load("res://scenes/Unit.tscn").instantiate();
+	get_tree().get_root().add_child(Unit_scene)
 
 func _exit_tree():
 	if Build_scene != null:
@@ -45,9 +47,9 @@ func init():
 func determine_terrain(value):
 	if value < -0.2:
 		return TerrainType.WATER
-	#elif value < -0.15:
-	#	return TerrainType.SAND
-	elif value < 0.1:
+	elif value < -0.14:
+		return TerrainType.SAND
+	elif value < 0.2:
 		return TerrainType.PLAIN
 	#elif value < 0.15:
 	#	return TerrainType.FOREST
@@ -71,9 +73,10 @@ func _draw():
 			if terrain_type == TerrainType.WATER:
 				#draw_rect(Rect2(pos, cell_size), Color(0.0, 0.0, 0.5), true)
 				#tile_map.set_cell(0, Vector2(x, y), 16, Vector2i(0,5))
-				tile_map.set_cell(0, Vector2(x, y), 3, Vector2i(x%15,y%15))
+				tile_map.set_cell(0, Vector2(x, y), 5, Vector2i(x%15,y%15))
 			elif terrain_type == TerrainType.SAND:
-				draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
+				#draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
+				tile_map.set_cell(0, Vector2(x, y), 4, Vector2i(x%15,y%15))
 			elif terrain_type == TerrainType.PLAIN:
 				#draw_rect(Rect2(pos, cell_size), Color(0.9, 0.8, 0.6), true)
 				tile_map.set_cell(0, Vector2(x, y), 1, Vector2i(x%15,y%15))
